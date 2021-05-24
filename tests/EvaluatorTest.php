@@ -84,6 +84,18 @@ final class EvaluatorTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         Evaluator::evaluate('8 8 - 2');
     }
+
+    public function testSimpleMultiplicationReturnsResult(): void
+    {
+        $this->assertEquals(
+            "45",
+            Evaluator::evaluate('15 * 3')
+        );
+        $this->assertEquals(
+            "135",
+            Evaluator::evaluate('15 * 3 * 3')
+        );
+    }
 }
 
 ?>

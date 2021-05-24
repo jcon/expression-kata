@@ -21,6 +21,8 @@ final class Evaluator
                     $total += $left; break;
                 case '-':
                     $total -= $left; break;
+                case '*':
+                    $total *= $left; break;
             }
 
             if ($sp == count($terms)) {
