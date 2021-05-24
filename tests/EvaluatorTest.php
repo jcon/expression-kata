@@ -66,6 +66,24 @@ final class EvaluatorTest extends TestCase
             Evaluator::evaluate('8 - 2 + 5')
         );
     }
+
+    public function testInvalidOperationsThrowInvalidArgumentException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Evaluator::evaluate('+ 8 - 2');
+    }
+
+    public function testInvalidDoubleOperationsThrowInvalidArgumentException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Evaluator::evaluate('8 -- 2');
+    }
+
+    public function testInvalidDoubleNumberThrowInvalidArgumentException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        Evaluator::evaluate('8 8 - 2');
+    }
 }
 
 ?>

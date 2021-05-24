@@ -12,6 +12,9 @@ final class Evaluator
         $op = '+'; // Default to '+' for single term expressions.
         $sp = 0; // treat $terms as a stack, where $terms[0] is the top of the stack.
         while ($sp < count($terms)) {
+            if (!is_numeric($terms[$sp])) {
+                throw new InvalidArgumentException("'$expr' is not valid");
+            }
             $left = (int) $terms[$sp++];
             switch ($op) {
                 case '+':
@@ -22,6 +25,10 @@ final class Evaluator
 
             if ($sp == count($terms)) {
                 break;
+            }
+
+            if (is_numeric($terms[$sp])) {
+                throw new InvalidArgumentException("'$expr' is not valid");
             }
 
             $op = $terms[$sp++];
