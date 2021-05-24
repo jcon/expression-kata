@@ -11,29 +11,29 @@ final class Evaluator
         $terms = Evaluator::tokenize($expr);
         $op = '+'; // Default to '+' for single term expressions.
         $sp = 0; // treat $terms as a stack, where $terms[0] is the top of the stack.
+
         while ($sp < count($terms)) {
+            // If there's a next term, it must be numeric.
             if (!is_numeric($terms[$sp])) {
                 throw new InvalidArgumentException("'$expr' is not valid");
             }
             $left = (int) $terms[$sp++];
             switch ($op) {
-                case '+':
-                    $total += $left; break;
-                case '-':
-                    $total -= $left; break;
-                case '*':
-                    $total *= $left; break;
+                case '+': $total += $left; break;
+                case '-': $total -= $left; break;
+                case '*': $total *= $left; break;
+                case '/': $total = floor($total / $left); break;
             }
 
             if ($sp == count($terms)) {
                 break;
             }
 
-            if (is_numeric($terms[$sp])) {
+            $op = $terms[$sp++];
+            // If there's a next term, it should be an operation.
+            if (strpos('+-*/', $op) < 0) {
                 throw new InvalidArgumentException("'$expr' is not valid");
             }
-
-            $op = $terms[$sp++];
         }
         return $total;
     }

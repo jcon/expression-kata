@@ -96,6 +96,14 @@ final class EvaluatorTest extends TestCase
             Evaluator::evaluate('15 * 3 * 3')
         );
     }
+
+    public function testSimpleDivisionReturnsResult(): void
+    {
+        $this->assertEquals(
+            "33",
+            Evaluator::evaluate('100 / 3')
+        );
+    }
 }
 
 ?>
