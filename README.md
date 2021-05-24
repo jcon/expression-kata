@@ -78,6 +78,7 @@ Before we discuss one approach, let's reframe what our evaluator is actually doi
 
 ```
 expression := term (op term)*
+op := '+' | '-' | '*' | '/'
 term := integerConstant
 ```
 
@@ -85,6 +86,7 @@ If we add parenthesis, our grammar would be modified slightly:
 
 ```
 expression := term (op term)*
+op := '+' | '-' | '*' | '/'
 term := integerConstant | '(' expression ')'
 ```
 
