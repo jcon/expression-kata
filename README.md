@@ -90,7 +90,7 @@ op := '+' | '-' | '*' | '/'
 term := integerConstant | '(' expression ')'
 ```
 
-One way our evaluator can support this grammar would be to convert the input into an evaluation tree that maps to expression form. We could then "evaluate" the tree, but evaluating each branch. We're finished once we have nothing else to evaluate. For instance, to evaluate `8 + (16 / (3 - 1))`:
+There are a few ways to handle this. One way is using [Dijkstra's Two Stack Algorithm](http://www.wisenheimerbrainstorm.com/archive/algorithms/dijkstra-s-two-stack-algorithm). Another way our evaluator can support this grammar would be to convert the input into an evaluation tree that maps to expression form. We could then "evaluate" the tree, but evaluating each branch. We're finished once we have nothing else to evaluate. For instance, to evaluate `8 + (16 / (3 - 1))`:
 
 
 <pre>
