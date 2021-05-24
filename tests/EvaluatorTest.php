@@ -51,6 +51,21 @@ final class EvaluatorTest extends TestCase
         );
     }   
 
+    public function testSimpleSubtractionReturnsResult(): void
+    {
+        $this->assertEquals(
+            "6",
+            Evaluator::evaluate('8 - 2')
+        );
+    }
+
+    public function testSimpleMultipleOperationsReturnsResult(): void
+    {
+        $this->assertEquals(
+            "11",
+            Evaluator::evaluate('8 - 2 + 5')
+        );
+    }
 }
 
 ?>

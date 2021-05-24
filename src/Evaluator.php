@@ -6,10 +6,25 @@ final class Evaluator
         if ($expr == '') {
                 return '0';
         }
+
         $total = 0;
         $terms = Evaluator::tokenize($expr);
-        foreach ($terms as $term) {
-                $total += (int) $term;
+        $op = '+'; // Default to '+' for single term expressions.
+        $sp = 0; // treat $terms as a stack, where $terms[0] is the top of the stack.
+        while ($sp < count($terms)) {
+            $left = (int) $terms[$sp++];
+            switch ($op) {
+                case '+':
+                    $total += $left; break;
+                case '-':
+                    $total -= $left; break;
+            }
+
+            if ($sp == count($terms)) {
+                break;
+            }
+
+            $op = $terms[$sp++];
         }
         return $total;
     }
